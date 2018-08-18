@@ -15,17 +15,17 @@ function makeCode () {
     return
   }
 
-  qrcode.makeCode(elText.value)
+  qrcode.makeCode(elText)
 }
 
 makeCode()
 
-$('#text')
-    .on('blur', function () {
-      makeCode()
-    })
-    .on('keydown', function (e) {
-      if (e.keyCode == 13) {
-        makeCode()
-      }
-    })
+// $('#text')
+//     .on('blur', function () {
+//       makeCode()
+//     })
+//     .on('keydown', function (e) {
+//       if (e.keyCode == 13) {
+//         makeCode()
+//       }
+//     })

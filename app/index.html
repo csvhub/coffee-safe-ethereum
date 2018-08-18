@@ -2,8 +2,67 @@
 <html>
 <head>
   <title>CoffeeTrack - Project of Happy City from Nami Hackathon</title>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet'>
-  <script src="javascripts/app.js"></script>
+  <script src="/dist/app.js"></script>
+  <style>
+    body {
+      margin-left: 25%;
+      margin-right: 25%;
+      margin-top: 5%;
+      font-family: "Open Sans", sans-serif;
+    }
+
+    label {
+      display: inline-block;
+      width: 100px;
+    }
+
+    input {
+      width: 500px;
+      padding: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      font-size: 16px;
+      padding: 5px;
+    }
+
+    h1, h2 {
+      display: inline-block;
+      vertical-align: middle;
+      margin-top: 0px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #AAA;
+      font-size: 32px;
+    }
+
+    h3 {
+      font-weight: normal;
+      color: #AAA;
+      font-size: 24px;
+    }
+
+    .black {
+      color: black;
+    }
+
+    #balance {
+      color: black;
+    }
+
+    .hint {
+      color: #666;
+    }
+
+    #qrcode {
+      width:160px;
+      height:160px;
+      margin-top:15px;
+    }
+  </style>
 </head>
 <body>
   <h1>Coffee Tracking</h1>
@@ -36,7 +95,39 @@
   <div id="qrcode"></div>
   <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="javascripts/index.js"></script>
+  <script>
+    var qrcode = new QRCode('qrcode')
+
+    function makeCode () {
+      var elText = document.getElementById('text')
+      var contractAddress = document.getElementById('contractAddress')
+      var locationId = document.getElementById('locationId')
+      var locationName = document.getElementById('locationName')
+      var secret = document.getElementById('secret')
+      var passPhrase = document.getElementById('passPhrase')
+
+      var elText = contractAddress.value + locationName.value + locationId.value + secret.value + passPhrase.value
+      if (!elText) {
+        alert('Input a text')
+        elText.focus()
+        return
+      }
+      qrcode.makeCode(elText)
+    }
+
+    makeCode()
+
+    // $('#text')
+    //     .on('blur', function () {
+    //       makeCode()
+    //     })
+    //     .on('keydown', function (e) {
+    //       if (e.keyCode == 13) {
+    //         makeCode()
+    //       }
+    //     })
+
+  </script>
 
 </body>
 </html>
